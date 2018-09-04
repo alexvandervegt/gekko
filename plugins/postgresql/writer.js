@@ -33,14 +33,16 @@ Store.prototype.writeCandles = function() {
     `;
     
     this.db.connect((err,client,done) => {
-      client.query(stmt, (err, res) => {
-        done();
-        if (err) {
-          log.debug(err.stack)
-        } else {
-          //log.debug(res)
-        }
-      });
+      if(client) {
+        client.query(stmt, (err, res) => {
+          done();
+          if (err) {
+            log.debug(err.stack)
+          } else {
+            //log.debug(res)
+          }
+        });
+      }
     });
   });
 
